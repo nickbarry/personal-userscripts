@@ -1,0 +1,1 @@
+These are userscripts I've made for personal use. Feel free to use them too!
