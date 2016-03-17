@@ -9,7 +9,10 @@
 /* jshint -W097 */
 'use strict';
 
-var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl','mac ','[mac]','for mac','hdr','jalopnik',"today's best deals",'kotaku','deadspin','gawker','acer','kanye']
+var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl','mac ',
+                      '[mac]','for mac','hdr','jalopnik',"today's best deals",'kotaku',
+                      'deadspin','gawker','acer','kanye','apple watch','smartwatch','hoverboard',
+                      'streaming video']
                      .concat([]); // temporary terms to include; separated to help me remember to get rid of them
 // 'iphone',' ios','apple'
 
