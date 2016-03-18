@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.0
+// @version      1.0.1
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
 // @match        http://feedly.com/*
@@ -12,7 +12,7 @@
 var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl','mac ',
                       '[mac]','for mac','hdr','jalopnik',"today's best deals",'kotaku',
                       'deadspin','gawker','acer','kanye','apple watch','smartwatch','hoverboard',
-                      'streaming video']
+                      'streaming video','playstation','beer','wine','sims']
                      .concat([]); // temporary terms to include; separated to help me remember to get rid of them
 // 'iphone',' ios','apple'
 
