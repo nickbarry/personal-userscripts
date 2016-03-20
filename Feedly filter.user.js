@@ -19,7 +19,9 @@ var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl',
     'playstation','beer','wine','sims','video stream','osx','os x',' ios','watchband',
     'tweetdeck','t-mobile','sprint','raspberry pi','macs','downton','walking dead',
     'wrongometer','menu plan','transgender','transsexual','whiskey tango foxtrot',
-    'cyanogen','imessage','tech news digest','tv','linux','trans ']
+    'cyanogen','imessage','tech news digest','tv','linux','trans ','game of throne','hbo',
+    'game console','gaming console','video game','computer game','gabfest','oscars',
+    'grammy','golden globe','transphobic','transphobia']
     .concat([]); // temporary terms to include; separated to help me remember to get rid of them
 // 'iphone','apple'
 
