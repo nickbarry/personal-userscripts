@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.1.0
+// @version      1.1.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -15,23 +15,28 @@
 
 var termsToExclude = [
     /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
-    'tv','game of throne','hbo','oscars','grammy','golden globe',
+    'tv','game of throne','hbo','oscars','grammy','golden globe','emoji','emoticon',
 
     /* Technology */ 'nvidia','mac ','[mac]','for mac','hdr','acer','apple watch','smartwatch',
     'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
     ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
     'imessage','tech news digest','linux','game console','gaming console','video game',
-    'computer game',
+    'computer game','arduino',
 
-    /* Sports */ 'basketball','nba','football','nfl',
+    /* Sports */ 'basketball','nba','football','nfl','adidas','reebok','nike',
 
     /* Blog-specific */ 'jalopnik',"today's best deals",'kotaku','deadspin','gawker',
     'wrongometer','menu plan','gabfest',
 
-    /* Specific issues */ 'beer','wine',
-    'transgender','transsexual','trans ','transphobic','transphobia'
+    /* Specific issues */ 'beer','wine','heineken',
+    'transgender','transsexual','trans ','transphobic','transphobia',
 
-    /* Temp items */ ];
+    /* Misc */ 'mcdonald\'s',
+
+    /* Temp items */
+
+    /* last-item placeholder */ 'zzazzazozaz']; // This makes it easy for me to remember to just ALWAYS
+    // leave a trailing comma at the end of each category block.
     // Consider: 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
