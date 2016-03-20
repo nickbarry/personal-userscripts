@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.0.2
-// @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
+// @version      1.0.1
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
 // @match        http://feedly.com/*
@@ -10,15 +9,10 @@
 /* jshint -W097 */
 'use strict';
 
-// Latest version here:
-// https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
-
 var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl','mac ',
                       '[mac]','for mac','hdr','jalopnik',"today's best deals",'kotaku',
                       'deadspin','gawker','acer','kanye','apple watch','smartwatch','hoverboard',
-                      'streaming video','playstation','beer','wine','sims','video stream',
-		      'osx','os x',' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi,
-		      'macs','downton','walking dead','wrongometer',]
+                      'streaming video','playstation','beer','wine','sims']
                      .concat([]); // temporary terms to include; separated to help me remember to get rid of them
 // 'iphone',' ios','apple'
 
