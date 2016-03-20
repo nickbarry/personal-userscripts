@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.0.3
+// @version      1.1.0
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -13,17 +13,26 @@
 // Latest version here:
 // https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
 
-var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl','mac ',
-    '[mac]','for mac','hdr','jalopnik',"today's best deals",'kotaku','deadspin','gawker',
-    'acer','kanye','apple watch','smartwatch','hoverboard','streaming video',
-    'playstation','beer','wine','sims','video stream','osx','os x',' ios','watchband',
-    'tweetdeck','t-mobile','sprint','raspberry pi','macs','downton','walking dead',
-    'wrongometer','menu plan','transgender','transsexual','whiskey tango foxtrot',
-    'cyanogen','imessage','tech news digest','tv','linux','trans ','game of throne','hbo',
-    'game console','gaming console','video game','computer game','gabfest','oscars',
-    'grammy','golden globe','transphobic','transphobia']
-    .concat([]); // temporary terms to include; separated to help me remember to get rid of them
-// 'iphone','apple'
+var termsToExclude = [
+    /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
+    'tv','game of throne','hbo','oscars','grammy','golden globe',
+
+    /* Technology */ 'nvidia','mac ','[mac]','for mac','hdr','acer','apple watch','smartwatch',
+    'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
+    ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
+    'imessage','tech news digest','linux','game console','gaming console','video game',
+    'computer game',
+
+    /* Sports */ 'basketball','nba','football','nfl',
+
+    /* Blog-specific */ 'jalopnik',"today's best deals",'kotaku','deadspin','gawker',
+    'wrongometer','menu plan','gabfest',
+
+    /* Specific issues */ 'beer','wine',
+    'transgender','transsexual','trans ','transphobic','transphobia'
+
+    /* Temp items */ ];
+    // Consider: 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
 
