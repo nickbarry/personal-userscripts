@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.0.2
+// @version      1.0.3
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -18,9 +18,10 @@ var termsToExclude = ['kardashian','nvidia','basketball','nba','football','nfl',
     'acer','kanye','apple watch','smartwatch','hoverboard','streaming video',
     'playstation','beer','wine','sims','video stream','osx','os x',' ios','watchband',
     'tweetdeck','t-mobile','sprint','raspberry pi','macs','downton','walking dead',
-    'wrongometer',]
-                     .concat([]); // temporary terms to include; separated to help me remember to get rid of them
-// 'iphone',' ios','apple'
+    'wrongometer','menu plan','transgender','transsexual','whiskey tango foxtrot',
+    'cyanogen','imessage','tech news digest','tv','linux','trans ']
+    .concat([]); // temporary terms to include; separated to help me remember to get rid of them
+// 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
 
