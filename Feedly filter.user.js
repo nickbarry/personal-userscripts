@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.1.1
+// @version      1.1.2
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -15,13 +15,14 @@
 
 var termsToExclude = [
     /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
-    'tv','game of throne','hbo','oscars','grammy','golden globe','emoji','emoticon',
+    'tv','game of throne','hbo','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
+    'Jay Z',
 
     /* Technology */ 'nvidia','mac ','[mac]','for mac','hdr','acer','apple watch','smartwatch',
     'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
     ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
     'imessage','tech news digest','linux','game console','gaming console','video game',
-    'computer game','arduino',
+    'computer game','arduino','spotify','at&t','xbox','coolest cooler','pebble',
 
     /* Sports */ 'basketball','nba','football','nfl','adidas','reebok','nike',
 
