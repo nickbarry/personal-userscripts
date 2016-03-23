@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.2.3
+// @version      1.2.4
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -23,6 +23,7 @@ var termsToExclude = [
     ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
     'imessage','tech news digest','linux','game console','gaming console','video game',
     'computer game','arduino','spotify','at&t','xbox','coolest cooler','pebble','minecraft',
+    'blackberry','iphone se','macbook','lightning cable','atari','game boy','gameboy','divergent',
 
     /* Sports */ 'basketball','nba','football','nfl','adidas','reebok','nike','draftking',
     'fanduel',
