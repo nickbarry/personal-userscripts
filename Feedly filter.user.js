@@ -92,7 +92,7 @@ function detectArticles(){
 
 function reviewArticles(){
     var articles = articlesExist();
-    console.log('articles length: ',articles.length);
+    //console.log('articles length: ',articles.length);
     articles.forEach(function(article){
         var title = article.dataset.title;
         var excludedTermCheck = hasExcludedTerm(title);
