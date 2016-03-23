@@ -15,7 +15,7 @@
 
 var termsToExclude = [
     /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
-    'tv','game of throne','hbo','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
+    'tv','game of throne',' hbo','hbo ','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
     'Jay Z',
 
     /* Technology */ 'nvidia','mac ','[mac]','ipad','for mac','hdr ',' hdr','acer','apple watch','smartwatch',
