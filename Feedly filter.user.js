@@ -18,7 +18,7 @@ var termsToExclude = [
     'tv','game of throne','hbo','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
     'Jay Z',
 
-    /* Technology */ 'nvidia','mac ','[mac]','ipad','for mac','hdr','acer','apple watch','smartwatch',
+    /* Technology */ 'nvidia','mac ','[mac]','ipad','for mac','hdr ',' hdr','acer','apple watch','smartwatch',
     'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
     ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
     'imessage','tech news digest','linux','game console','gaming console','video game',
