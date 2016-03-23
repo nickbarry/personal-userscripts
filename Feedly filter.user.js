@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.1.4
+// @version      1.2.0
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -55,14 +55,17 @@ function memoize(f) {
 }
 
 var hasExcludedTerm = memoize(function(string){
-    var hasTerm = false; // assume title does not have an excluded term
+    var result = {hasTerm: false}; // assume title does not have an excluded term
     for(var i = 0; i < termsToExclude.length; i++){
         if(string.toLowerCase().indexOf(termsToExclude[i].toLowerCase()) !== -1){ // title has [i] excluded term in it
-            hasTerm = true;
+            result.hasTerm = true;
             break;
         }
     }
-    return hasTerm;
+    if(result.hasTerm){
+        result.term = termsToExclude[i];
+    }
+    return result;
 });
 
 function toArray(arrayLikeObj){
@@ -92,8 +95,9 @@ function reviewArticles(){
     console.log('articles length: ',articles.length);
     articles.forEach(function(article){
         var title = article.dataset.title;
-        if(hasExcludedTerm(title)){
-            console.log(title);
+        var excludedTermCheck = hasExcludedTerm(title);
+        if(excludedTermCheck.hasTerm){
+            console.log(excludedTermCheck.term + ": " + title);
             article.children[0].children[3].click();
         }
     });
