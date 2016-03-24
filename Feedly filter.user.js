@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.2.4
+// @version      1.2.5
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -29,10 +29,11 @@ var termsToExclude = [
     'fanduel',
 
     /* Blog-specific */ 'jalopnik',"today's best deals",'kotaku','deadspin','gawker',
-    'wrongometer','menu plan','gabfest',
+    'wrongometer','menu plan','gabfest','jezebel',
 
     /* Specific issues */ 'beer','wine','heineken',
     'transgender','transsexual','trans ','transphobic','transphobia',
+    'vape','vaping',
 
     /* Misc */ 'mcdonald\'s',
 
