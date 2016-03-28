@@ -46,6 +46,7 @@ var termsToExclude = [
 var detectArticleTimer = window.setInterval(detectArticles, 300);
 
 // HOISTED FUNCTIONS
+// Caching function - create function that caches the results of identical previous calls to that function
 function memoize(f) {
   var cache = {};
 
@@ -56,6 +57,7 @@ function memoize(f) {
   };
 }
 
+// Test whether a particular string contains one of the terms I'd like to exclude
 var hasExcludedTerm = memoize(function(string){
     var result = {hasTerm: false}; // assume title does not have an excluded term
     for(var i = 0; i < termsToExclude.length; i++){
@@ -70,10 +72,12 @@ var hasExcludedTerm = memoize(function(string){
     return result;
 });
 
+// Convert array-like object to array
 function toArray(arrayLikeObj){
 	return [].slice.call(arrayLikeObj);
 }
 
+// Checks if the articles have loaded yet in Feedly; if so, returns the article titles array
 function articlesExist(){
     var articles = toArray(document.getElementsByClassName('u0Entry'));
     if(articles.length){
@@ -83,6 +87,7 @@ function articlesExist(){
     }
 }
 
+// Once articles are detected, set a regular interval to review and hide newly-loaded articles that match exclusion terms
 function detectArticles(){
     var articles = articlesExist();
     if(articles){
@@ -92,6 +97,7 @@ function detectArticles(){
     }
 }
 
+// Marks articles as hidden and read if they have an excluded term in them
 function reviewArticles(){
     var articles = articlesExist();
     //console.log('articles length: ',articles.length);
@@ -103,10 +109,4 @@ function reviewArticles(){
             article.children[0].children[3].click();
         }
     });
-}
-
-function findByTitleTermX(term){
-    return function(el){
-        return el.dataset.title.indexOf(term) !== -1;
-    }
 }
