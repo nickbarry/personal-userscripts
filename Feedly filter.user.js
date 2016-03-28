@@ -18,7 +18,7 @@ var termsToExclude = [
 
     /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,
     /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
-    /Jay Z/,/divergent/,/lil'? kim/,
+    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,
 
     /* Technology */ /nvidia/,/\bmacs?\b/,/ipad/,/\bhdr\b/,/acer/,/apple watch/,/smartwatch/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/\bos ?x\b/,
@@ -34,7 +34,7 @@ var termsToExclude = [
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,
 
     /* Specific issues */ /beer/,/wine/,/heineken/,
-    /transgender/,/transsexual/,/trans\b/,/transphobic/,/transphobia/,
+    /transgender/,/transsexual/,/trans\b/,/transphobic/,/transphobia/,/plus[- ]size/,
     /vape/,/vaping/,
 
     /* Misc */ /mcdonald's/];
