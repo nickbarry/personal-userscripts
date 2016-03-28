@@ -21,7 +21,7 @@ var termsToExclude = [
     /* Technology */ 'nvidia','mac ','[mac]','ipad','for mac','hdr ',' hdr','acer','apple watch','smartwatch',
     'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
     ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
-    'imessage','tech news digest','linux','game console','gaming console','video game',
+    'imessage','tech news digest','linux','game console','gaming','video game','videogame',
     'computer game','arduino','spotify','at&t','xbox','coolest cooler','pebble','minecraft',
     'blackberry','iphone se','macbook','lightning cable','atari','game boy','gameboy','divergent',
 
