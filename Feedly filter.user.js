@@ -14,6 +14,8 @@
 // https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
 
 var termsToExclude = [
+    /* Temp items */
+
     /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
     'tv','game of throne',' hbo','hbo ','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
     'Jay Z',
@@ -35,12 +37,7 @@ var termsToExclude = [
     'transgender','transsexual','trans ','transphobic','transphobia',
     'vape','vaping',
 
-    /* Misc */ 'mcdonald\'s',
-
-    /* Temp items */
-
-    /* last-item placeholder */ 'zzazzazozaz']; // This makes it easy for me to remember to just ALWAYS
-    // leave a trailing comma at the end of each category block.
+    /* Misc */ 'mcdonald\'s'];
     // Consider: 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
