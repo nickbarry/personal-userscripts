@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.2.5
+// @version      1.3.0
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -16,28 +16,28 @@
 var termsToExclude = [
     /* Temp items */
 
-    /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',
-    'tv','game of throne',' hbo','hbo ','oscars','grammy','golden globe','emoji','emoticon','Beyoncé',
-    'Jay Z',
+    /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,
+    /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
+    /Jay Z/,/divergent/,
 
-    /* Technology */ 'nvidia','mac ','[mac]','ipad','for mac','hdr ',' hdr','acer','apple watch','smartwatch',
-    'hoverboard','streaming video','playstation','sims','video stream','osx','os x',
-    ' ios','watchband','tweetdeck','t-mobile','sprint','raspberry pi','macs','cyanogen',
-    'imessage','tech news digest','linux','game console','gaming','video game','videogame',
-    'computer game','arduino','spotify','at&t','xbox','coolest cooler','pebble','minecraft',
-    'blackberry','iphone se','macbook','lightning cable','atari','game boy','gameboy','divergent',
+    /* Technology */ /nvidia/,/\bmacs?\b/,/ipad/,/\bhdr\b/,/acer/,/apple watch/,/smartwatch/,
+    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/\bos ?x\b/,
+    /\bios/,/watchband/,/tweetdeck/,/t-mobile/,/sprint/,/raspberry pi/,/macs/,/cyanogen/,
+    /imessage/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
+    /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
+    /blackberry/,/iphone se/,/macbook/,/lightning cable/,/atari/,/game ?boy/,
 
-    /* Sports */ 'basketball','nba','football','nfl','adidas','reebok','nike','draftking',
-    'fanduel',
+    /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
+    /fanduel/,
 
-    /* Blog-specific */ 'jalopnik',"today's best deals",'kotaku','deadspin','gawker',
-    'wrongometer','menu plan','gabfest','jezebel',
+    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,
+    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,
 
-    /* Specific issues */ 'beer','wine','heineken',
-    'transgender','transsexual','trans ','transphobic','transphobia',
-    'vape','vaping',
+    /* Specific issues */ /beer/,/wine/,/heineken/,
+    /transgender/,/transsexual/,/trans\b/,/transphobic/,/transphobia/,
+    /vape/,/vaping/,
 
-    /* Misc */ 'mcdonald\'s'];
+    /* Misc */ /mcdonald's/];
     // Consider: 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
@@ -55,16 +55,15 @@ function memoize(f) {
 }
 
 // Test whether a particular string contains one of the terms I'd like to exclude
-var hasExcludedTerm = memoize(function(string){
-    var result = {hasTerm: false}; // assume title does not have an excluded term
+var hasExcludedTerm = memoize(function(titleString){
+    var result = {hasTerm: false},
+        titleLower = titleString.toLowerCase(); // assume title does not have an excluded term
     for(var i = 0; i < termsToExclude.length; i++){
-        if(string.toLowerCase().indexOf(termsToExclude[i].toLowerCase()) !== -1){ // title has [i] excluded term in it
+        if(titleLower.search(termsToExclude[i]) !== -1){ // title has [i] excluded term in it
             result.hasTerm = true;
+            result.term = termsToExclude[i];
             break;
         }
-    }
-    if(result.hasTerm){
-        result.term = termsToExclude[i];
     }
     return result;
 });
