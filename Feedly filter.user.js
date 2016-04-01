@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.1
+// @version      1.3.2
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -25,13 +25,13 @@ var termsToExclude = [
     /\bios/,/watchband/,/tweetdeck/,/t-mobile/,/sprint/,/raspberry pi/,/macs/,/cyanogen/,
     /imessage/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
-    /blackberry/,/iphone se/,/macbook/,/lightning cable/,/atari/,/game ?boy/,
+    /blackberry/,/iphone se/,/macbook/,/lightning cable/,/atari/,/game ?boy/,/apple music/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,
 
     /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,
-    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,
+    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,
 
     /* Specific issues */ /beer/,/wine/,/heineken/,
     /transgender/,/transsexual/,/trans /,/trans-s/,/transphobic/,/transphobia/,/plus[- ]size/,
