@@ -34,8 +34,8 @@ var termsToExclude = [
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,
 
     /* Specific issues */ /beer/,/wine/,/heineken/,
-    /transgender/,/transsexual/,/trans\b/,/transphobic/,/transphobia/,/plus[- ]size/,
-    /vape/,/vaping/,
+    /transgender/,/transsexual/,/trans /,/trans-s/,/transphobic/,/transphobia/,/plus[- ]size/,
+    /vape/,/vaping/, // Trying not to rule out trans-pacific partnership
 
     /* Misc */ /mcdonald's/];
     // Consider: 'iphone','apple'
