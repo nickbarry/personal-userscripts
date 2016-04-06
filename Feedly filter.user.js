@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.5
+// @version      1.3.6
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -20,13 +20,15 @@ var termsToExclude = [
     /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/
 
-    /* Technology */ /nvidia/,/\bmacs?\b/,/ipad/,/\bhdr\b/,/acer/,/apple watch/,/smartwatch/,
-    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/\bos ?x\b/,
-    /\bios/,/watchband/,/tweetdeck/,/t-mobile/,/sprint/,/raspberry pi/,/macs/,/cyanogen/,
-    /imessage/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
+    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,
+    /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,
+    // Consider: 'iphone','apple' (But right now I don't want to block out news about
+
+    /* Technology */ /nvidia/,/\bhdr\b/,/acer/,
+    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
+    /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
-    /blackberry/,/iphone se/,/macbook/,/lightning cable/,/atari/,/game ?boy/,/apple music/,/icloud/,
-    /apple game/,/ios game/,/camera/,
+    /blackberry/,/atari/,/game ?boy/,/camera/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,
@@ -41,7 +43,6 @@ var termsToExclude = [
     /zika/,
 
     /* Misc */ /mcdonald's/];
-    // Consider: 'iphone','apple'
 
 var detectArticleTimer = window.setInterval(detectArticles, 300);
 
