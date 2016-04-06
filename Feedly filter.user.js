@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.4
+// @version      1.3.5
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -26,7 +26,7 @@ var termsToExclude = [
     /imessage/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
     /blackberry/,/iphone se/,/macbook/,/lightning cable/,/atari/,/game ?boy/,/apple music/,/icloud/,
-    /apple game/,/ios game/,
+    /apple game/,/ios game/,/camera/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,
@@ -35,8 +35,10 @@ var termsToExclude = [
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,
 
     /* Specific issues */ /beer/,/wine/,/heineken/,
-    /transgender/,/transsex/,/trans /,/trans-s/,/transpho/, // Trying not to rule out trans-pacific partnership
-    /plus[- ]size/,/vape/,/vaping/,/zika/,
+    /transgender/,/transsex/,/trans /,/trans-s/,/transpho/,/trans$/, // Trying not to rule out trans-pacific partnership
+    /plus[- ]size/,
+    /vape/,/vaping/,
+    /zika/,
 
     /* Misc */ /mcdonald's/];
     // Consider: 'iphone','apple'
@@ -80,7 +82,7 @@ function articlesExist(){
     if(articles.length){
         return articles;
     }else{
-        return false
+        return false;
     }
 }
 
