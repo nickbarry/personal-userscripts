@@ -20,7 +20,7 @@ var termsToExclude = [
     /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/
 
-    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,
+    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,
     // Consider: 'iphone','apple' (But right now I don't want to block out news about
 
