@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.7
+// @version      1.3.8
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -18,7 +18,7 @@ var termsToExclude = [
 
     /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,
     /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
-    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/,
+    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,
