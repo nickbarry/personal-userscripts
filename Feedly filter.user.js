@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.8
+// @version      1.3.9
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -20,15 +20,14 @@ var termsToExclude = [
     /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,
 
-    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
-    /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,
-    // Consider: 'iphone','apple' (But right now I don't want to block out news about
+    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,/iphone/,
+    /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,/macos/,/apple/,
 
     /* Technology */ /nvidia/,/\bhdr\b/,/acer/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
-    /blackberry/,/atari/,/game ?boy/,/camera/,
+    /blackberry/,/atari/,/game ?boy/,/camera/,/gamestop/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,
