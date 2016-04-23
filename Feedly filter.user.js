@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.9
+// @version      1.3.10
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -14,32 +14,39 @@
 // https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
 
 var termsToExclude = [
-    /* Temp items */
+    /* Temp items */ /\bprince/,
 
-    /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,
-    /\btv\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
-    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/rapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,
+    /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,/\boprah/,/sports/,
+    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,
+    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
+    /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,
 
-    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,/iphone/,
-    /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/macs/,/imessage/,/macos/,/apple/,
+    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
+    /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
+    /\bmacos\b/,/\bapple/,/iphone/,/opera/,/safari/,
 
-    /* Technology */ /nvidia/,/\bhdr\b/,/acer/,
+    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
-    /blackberry/,/atari/,/game ?boy/,/camera/,/gamestop/,
+    /blackberry/,/atari/,/game ?boy/,/camera/,/gamestop/,/nintendo/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,
 
     /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,
-    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,
+    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,
 
-    /* Specific issues */ /beer/,/wine/,/heineken/,
+    /* Health */
+    /juice cleanse/,
+
+    /* Specific issues */
+    /beer/,/wine/,/heineken/,
     /transgender/,/transsex/,/trans /,/trans-s/,/transpho/,/trans$/, // Trying not to rule out trans-pacific partnership
     /plus[- ]size/,
-    /vape/,/vaping/,
+    /vape/,/vaping/,/\bedibles/,/pot edible/,/marijuana edible/,/weed edible/,/weed butter/,/pot butter/,/420/,/stoner/,
     /zika/,
+    /coffee/,/caffeine/,/espresso/,/starbucks/,
 
     /* Misc */ /mcdonald's/];
 
