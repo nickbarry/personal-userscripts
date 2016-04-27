@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.14
+// @version      1.3.15
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -17,9 +17,9 @@ var termsToExclude = [
     /* Temp items */ /\bprince/,
 
     /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,/\boprah/,/kate hudson/,
-    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/Beyoncé/,/drake/,
+    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
-    /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/Beyonc[eé]/,/beyhive/,
+    /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
@@ -35,11 +35,11 @@ var termsToExclude = [
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,/soccer/,/sports/,
 
-    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,/dear prudence/,
-    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,
+    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,/this week's top downloads/,
+    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
 
     /* Health */
-    /juice cleanse/,/menstrua/,
+    /juice cleanse/,/menstrua/,/juicer/,
 
     /* Shopping */
     /amazon deals/,
