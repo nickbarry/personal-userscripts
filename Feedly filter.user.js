@@ -20,7 +20,7 @@ var termsToExclude = [
     /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
     /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
-    /hunger games/,/tony award/,/tony'?s/,/hollywood/,
+    /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/iphone se/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
@@ -30,7 +30,7 @@ var termsToExclude = [
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,
-    /blackberry/,/atari/,/game ?boy/,/camera/,/gamestop/,/nintendo/,/ubuntu/,
+    /blackberry/,/atari/,/game ?boy/,/camera/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,/soccer/,/sports/,
