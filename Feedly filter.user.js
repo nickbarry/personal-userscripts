@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.18
+// @version      1.3.19
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -37,7 +37,7 @@ var termsToExclude = [
 
     /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,/this week's top downloads/,
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
-    /adequate man/,/io9/,/black flag/,
+    /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,
 
     /* Health */
     /juice cleanse/,/menstrua/,/juicer/,
