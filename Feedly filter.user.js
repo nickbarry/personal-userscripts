@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.21
+// @version      1.3.22
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -34,7 +34,7 @@ var termsToExclude = [
     /blackberry/,/atari/,/game ?boy/,/camera/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
-    /fanduel/,/soccer/,/sports/,/golf/,
+    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,
 
     /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/gawker/,/this week's top downloads/,
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
