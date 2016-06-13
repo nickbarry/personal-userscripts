@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.3.22
+// @version      1.4
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -57,33 +57,59 @@ var termsToExclude = [
 
     /* Misc */ /mcdonald's/];
 
-var detectArticleTimer = window.setInterval(detectArticles, 300);
+var App = {
+  detectArticleTimer: window.setInterval(detectArticles, 300),
+  uniqueArticleTitles: [],
+  latestArticle: 0,
+  currentUrl: '',
+  counter: 0 // A counter I can use for various testing scenarios
+};
 
 // HOISTED FUNCTIONS
-// Caching function - create function that caches the results of identical previous calls to that function
+// Caching function
 function memoize(f) {
   var cache = {};
 
-  return function() {
+  var memoizedFn = function() {
     var arg_str = JSON.stringify(arguments);
     cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
     return cache[arg_str];
   };
+
+  memoizedFn.clear = function(){ // allow user to clear the cache of the memoized function
+    cache = {};
+  };
+
+  return memoizedFn;
+}
+
+function pageChangeReset(App, memoizedFn){
+  console.log('Resetting App');
+  App.currentUrl = window.location.href;
+  App.latestArticle = 0;
+  App.uniqueArticleTitles.length = 0;
+  if(memoizedFn && typeof memoizedFn === 'function') { // If there is a memoized function passed in, clear its cache
+    memoizedFn.clear();
+  }
 }
 
 // Test whether a particular string contains one of the terms I'd like to exclude
-var hasExcludedTerm = memoize(function(titleString){
-    var result = {hasTerm: false},
-        titleLower = titleString.toLowerCase(); // assume title does not have an excluded term
-    for(var i = 0; i < termsToExclude.length; i++){
-        if(titleLower.search(termsToExclude[i]) !== -1){ // title has [i] excluded term in it
-            result.hasTerm = true;
-            result.term = termsToExclude[i];
-            break;
-        }
+var hasExcludedTerm = function(titleString){
+  var result = {hasTerm: false},
+    titleLower = titleString.toLowerCase(); // assume title does not have an excluded term
+  for(var i = 0; i < termsToExclude.length; i++){
+    if(titleLower.search(termsToExclude[i]) !== -1){ // title has [i] excluded term in it
+      result.hasTerm = true;
+      result.term = termsToExclude[i];
+      break;
     }
-    return result;
-});
+  }
+  return result;
+};
+
+var isTitleUnique = function isTitleUnique(title,arr){
+  return !~arr.indexOf(title); // true if the title is NOT found in the array
+};
 
 // Convert array-like object to array
 function toArray(arrayLikeObj){
@@ -92,34 +118,50 @@ function toArray(arrayLikeObj){
 
 // Checks if the articles have loaded yet in Feedly; if so, returns the article titles array
 function articlesExist(){
-    var articles = toArray(document.getElementsByClassName('u0Entry'));
-    if(articles.length){
-        return articles;
-    }else{
-        return false;
-    }
+  var articles = toArray(document.getElementsByClassName('u0Entry'));
+  if(articles.length){
+    return articles;
+  }else{
+    return false;
+  }
 }
 
 // Once articles are detected, set a regular interval to review and hide newly-loaded articles that match exclusion terms
 function detectArticles(){
-    var articles = articlesExist();
-    if(articles){
-        window.setInterval(reviewArticles, 5000);
-        //console.log('articles length: ',articles.length);
-        window.clearInterval(detectArticleTimer);
-    }
+  var articles = articlesExist();
+  if(articles){
+    window.setInterval(reviewArticles, 5000);
+    //console.log('articles length: ',articles.length);
+    window.clearInterval(App.detectArticleTimer);
+  }
 }
 
 // Marks articles as hidden and read if they have an excluded term in them
 function reviewArticles(){
-    var articles = articlesExist();
-    //console.log('articles length: ',articles.length);
-    articles.forEach(function(article){
-        var title = article.dataset.title;
-        var excludedTermCheck = hasExcludedTerm(title);
-        if(excludedTermCheck.hasTerm){
-            console.log(excludedTermCheck.term + ": " + title);
-            article.children[0].children[3].click();
-        }
-    });
+  if(App.currentUrl !== window.location.href) {pageChangeReset(App);}
+
+  var articles = articlesExist();
+  var titles = articles.map(function(article){
+    return article.dataset.title;
+  });
+
+  for(var i = App.latestArticle + 1; i < titles.length; i++){
+    var title = titles[i];
+    if(isTitleUnique(title,App.uniqueArticleTitles)){
+      App.uniqueArticleTitles.push(title); // If it is unique, add it to the array
+
+      var excludedTermCheck = hasExcludedTerm(title); // Check if title has a term I'd like to exclude
+      if(excludedTermCheck.hasTerm){
+        removeTitle(articles[i],title,excludedTermCheck);
+      }
+    }else{
+      removeTitle(articles[i],title,{term: 'Duplicate'});
+    }
+  }
+  App.latestArticle = i; // Update my latest article tracker
+}
+
+function removeTitle(article,title,excludedTermCheck){
+  console.log(excludedTermCheck.term + ": " + title);
+  article.children[0].children[3].click();
 }
