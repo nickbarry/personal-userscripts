@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      1.5
+// @version      2.0
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -19,6 +19,21 @@ var FilterMaker = (function(){
     this.latestArticle = 0;
     this.currentUrl = '';
     this.counter = 0; // A counter I can use for various testing scenarios
+
+    this.filterBar = document.createElement('input'); // Create a filterBar element I can use
+    var type = document.createAttribute('type'); // Add attributes to the filterBar
+    type.value = 'text';
+    var id = document.createAttribute('id');
+    id.value = 'article-filter';
+    this.filterBar.setAttributeNode(type);
+    this.filterBar.setAttributeNode(id);
+
+    this.filterBar.addEventListener('keyup',(function(){
+      var filterText = document.getElementById('article-filter').value;
+      var articlesObj = this.getArticlesToHide(filterText);
+      articlesObj.show.forEach(article => article.style.display = '');
+      articlesObj.hide.forEach(article => article.style.display = 'none');
+    }).bind(this));
   }
 
   // PRIVATE VARIABLES
@@ -30,7 +45,7 @@ var FilterMaker = (function(){
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
     /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
-    /half life/,/thor/,/season \d/,
+    /half life/,/\bthor\b/,/season \d/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
@@ -79,8 +94,12 @@ var FilterMaker = (function(){
     this.currentUrl = window.location.href;
     this.latestArticle = 0;
     this.uniqueArticleTitles.length = 0;
+    this.getArticlesToHide.clear();
     if(memoizedFn && typeof memoizedFn === 'function') { // If there is a memoized function passed in, clear its cache
       memoizedFn.clear();
+    }
+    if(!document.getElementById('article-filter')){
+      this.insertFilter()
     }
   }
 
@@ -93,22 +112,55 @@ var FilterMaker = (function(){
       return article.dataset.title;
     });
 
-    for(var i = this.latestArticle + 1; i < titles.length; i++){
-      var title = titles[i];
+    if(titles.length > this.latestArticle){ // If new articles have loaded
+      console.log('New articles have loaded!');
+      this.getArticlesToHide.clear();
+      for(var i = this.latestArticle; i < titles.length; i++){
+        var title = titles[i];
 
-      if(isTitleUnique(title,this.uniqueArticleTitles)){
-        this.uniqueArticleTitles.push(title); // If it is unique, add it to the array
+        if(isTitleUnique(title,this.uniqueArticleTitles)){
+          this.uniqueArticleTitles.push(title); // If it is unique, add it to the array
 
-        var excludedTermCheck = hasExcludedTerm(title); // Check if title has a term I'd like to exclude
-        if(excludedTermCheck.hasTerm){
-          removeTitle(articles[i],title,excludedTermCheck);
+          var excludedTermCheck = hasExcludedTerm(title); // Check if title has a term I'd like to exclude
+          if(excludedTermCheck.hasTerm){
+            removeTitle(articles[i],title,excludedTermCheck);
+          }
+        }else{
+          removeTitle(articles[i],title,{term: 'Duplicate'});
         }
-      }else{
-        removeTitle(articles[i],title,{term: 'Duplicate'});
       }
+      this.latestArticle = i; // Update my latest article tracker, which should now be equal
+      // to the length of titles (i.e., one index value higher than the highest actual index
+      // in titles).
     }
-    this.latestArticle = i; // Update my latest article tracker
   }
+
+  FilterMaker.prototype.getArticlesToHide = (function(){
+    var allArticles = [];
+
+    var getArticlesToHide = function(term){
+      term = term.toLowerCase();
+      allArticles = allArticles.length ? allArticles : articlesExist(); // Fetch titles if they don't exist
+      var articlesToHide = allArticles
+          .filter(article => !~article.dataset.title.toLowerCase().indexOf(term));
+      var articlesToShow = allArticles
+          .filter(article => ~article.dataset.title.toLowerCase().indexOf(term));
+      return {
+        hide: articlesToHide,
+        show: articlesToShow
+      };
+    };
+
+    getArticlesToHide.clear = function(){
+      allArticles.length = 0;
+    };
+
+    return getArticlesToHide;
+  })();
+
+  FilterMaker.prototype.insertFilter = function(){
+    document.getElementById('feedlyTitleBar').insertBefore(this.filterBar,null);
+  };
 
   return FilterMaker;
 
