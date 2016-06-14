@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      2.0
+// @version      2.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -28,12 +28,7 @@ var FilterMaker = (function(){
     this.filterBar.setAttributeNode(type);
     this.filterBar.setAttributeNode(id);
 
-    this.filterBar.addEventListener('keyup',(function(){
-      var filterText = document.getElementById('article-filter').value;
-      var articlesObj = this.getArticlesToHide(filterText);
-      articlesObj.show.forEach(article => article.style.display = '');
-      articlesObj.hide.forEach(article => article.style.display = 'none');
-    }).bind(this));
+    this.filterBar.addEventListener('keyup',this.applyFilter.bind(this));
   }
 
   // PRIVATE VARIABLES
@@ -101,6 +96,9 @@ var FilterMaker = (function(){
     if(!document.getElementById('article-filter')){
       this.insertFilter()
     }
+    if(document.getElementById('article-filter').value){
+      this.applyFilter();
+    }
   }
 
   // Marks articles as hidden and read if they have an excluded term in them
@@ -133,6 +131,13 @@ var FilterMaker = (function(){
       // to the length of titles (i.e., one index value higher than the highest actual index
       // in titles).
     }
+  }
+
+  FilterMaker.prototype.applyFilter = function applyFilter(){
+    var filterText = document.getElementById('article-filter').value;
+    var articlesObj = this.getArticlesToHide(filterText);
+    articlesObj.show.forEach(article => article.style.display = '');
+    articlesObj.hide.forEach(article => article.style.display = 'none');
   }
 
   FilterMaker.prototype.getArticlesToHide = (function(){
