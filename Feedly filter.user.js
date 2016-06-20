@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Feedly filter
-// @version      2.2.1
+// @name         Feedly filter - BETA
+// @version      3.0.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -23,8 +23,8 @@ var FilterMaker = (function(){
     this.currentUrl = '';
     this.counter = 0; // A counter I can use for various testing scenarios
 
-    //this.$filterBar = $('<input type="text" id="article-filter"');
-    //this.$filterBar.on('keyup',this.applyFilter.bind(this))
+    this.$filterBar = $('<input type="text" id="article-filter">');
+    this.$filterBar.on('keyup',this.applyFilter.bind(this))
 
     //this.filterBar = document.createElement('input'); // Create a filterBar element I can use
     //var type = document.createAttribute('type'); // Add attributes to the filterBar
@@ -46,7 +46,7 @@ var FilterMaker = (function(){
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
     /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
-    /half life/,/\bthor\b/,/season \d/,
+    /half life/,/\bthor\b/,/season \d/,/orange.*new black/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
