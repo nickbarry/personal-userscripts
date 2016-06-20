@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Feedly filter
-// @version      2.1
+// @version      2.2.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
 // @match        http://feedly.com/*
+// @require 	 http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 // @run-at       document-idle
 // ==/UserScript==
 /* jshint -W097 */
@@ -13,6 +14,8 @@
 // Latest version here:
 // https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
 
+this.$ = this.jQuery = jQuery.noConflict(true);
+
 var FilterMaker = (function(){
   var FilterMaker = function(){
     this.uniqueArticleTitles = [];
@@ -20,15 +23,18 @@ var FilterMaker = (function(){
     this.currentUrl = '';
     this.counter = 0; // A counter I can use for various testing scenarios
 
-    this.filterBar = document.createElement('input'); // Create a filterBar element I can use
-    var type = document.createAttribute('type'); // Add attributes to the filterBar
-    type.value = 'text';
-    var id = document.createAttribute('id');
-    id.value = 'article-filter';
-    this.filterBar.setAttributeNode(type);
-    this.filterBar.setAttributeNode(id);
+    //this.$filterBar = $('<input type="text" id="article-filter"');
+    //this.$filterBar.on('keyup',this.applyFilter.bind(this))
 
-    this.filterBar.addEventListener('keyup',this.applyFilter.bind(this));
+    //this.filterBar = document.createElement('input'); // Create a filterBar element I can use
+    //var type = document.createAttribute('type'); // Add attributes to the filterBar
+    //type.value = 'text';
+    //var id = document.createAttribute('id');
+    //id.value = 'article-filter';
+    //this.filterBar.setAttributeNode(type);
+    //this.filterBar.setAttributeNode(id);
+    //
+    //this.filterBar.addEventListener('keyup',this.applyFilter.bind(this));
   }
 
   // PRIVATE VARIABLES
@@ -164,7 +170,8 @@ var FilterMaker = (function(){
   })();
 
   FilterMaker.prototype.insertFilter = function(){
-    document.getElementById('feedlyTitleBar').insertBefore(this.filterBar,null);
+    $('#feedlyTitleBar').append(this.$filterBar);
+    //document.getElementById('feedlyTitleBar').insertBefore(this.filterBar,null);
   };
 
   return FilterMaker;
