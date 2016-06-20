@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.0.1
+// @version      3.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -25,6 +25,11 @@ var FilterMaker = (function(){
 
     this.$filterBar = $('<input type="text" id="article-filter">');
     this.$filterBar.on('keyup',this.applyFilter.bind(this))
+
+    this.$markFilteredAsRead = $('<button id="mark-filtered-as-read">Mark filtered articles as read</button>');
+    this.$markFilteredAsRead.on('click',this.markFilteredAsRead.bind(this));
+
+    this.filteredArticles = {show: null, hide: null};
 
     //this.filterBar = document.createElement('input'); // Create a filterBar element I can use
     //var type = document.createAttribute('type'); // Add attributes to the filterBar
@@ -129,7 +134,7 @@ var FilterMaker = (function(){
           if(excludedTermCheck.hasTerm){
             removeTitle(articles[i],title,excludedTermCheck);
           }
-        }else{
+        }else{ // If the title isn't unique, i.e. this is a duplicate of a more recent article in the queue
           removeTitle(articles[i],title,{term: 'Duplicate'});
         }
       }
@@ -141,9 +146,9 @@ var FilterMaker = (function(){
 
   FilterMaker.prototype.applyFilter = function applyFilter(){
     var filterText = document.getElementById('article-filter').value;
-    var articlesObj = this.getArticlesToHide(filterText);
-    articlesObj.show.forEach(article => article.style.display = '');
-    articlesObj.hide.forEach(article => article.style.display = 'none');
+    this.filteredArticles = this.getArticlesToHide(filterText);
+    this.filteredArticles.show.forEach(article => article.style.display = '');
+    this.filteredArticles.hide.forEach(article => article.style.display = 'none');
   }
 
   FilterMaker.prototype.getArticlesToHide = (function(){
@@ -170,8 +175,14 @@ var FilterMaker = (function(){
   })();
 
   FilterMaker.prototype.insertFilter = function(){
-    $('#feedlyTitleBar').append(this.$filterBar);
+    $('#feedlyTitleBar').append(this.$filterBar, this.$markFilteredAsRead);
     //document.getElementById('feedlyTitleBar').insertBefore(this.filterBar,null);
+  };
+
+  FilterMaker.prototype.markFilteredAsRead = function(){
+    $(this.filteredArticles.show).each(function(i,article){
+      removeTitle(article,$(article).data('title'),{term: 'Marked read'});
+    });
   };
 
   return FilterMaker;
@@ -228,9 +239,9 @@ var FilterMaker = (function(){
     }
   }
 
-  function removeTitle(article,title,excludedTermCheck){
+  function removeTitle(articleHtmlObj,title,excludedTermCheck){
     console.log(excludedTermCheck.term + ": " + title);
-    article.children[0].children[3].click();
+    articleHtmlObj.children[0].children[3].click();
   }
 })();
 
