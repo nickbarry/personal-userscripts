@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.1.2
+// @version      3.1.3
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -188,8 +188,11 @@ var FilterMaker = (function(){
     if(this.filteredArticles.show !== null){ // If it's null, we haven't used the filter bar yet, and we shouldn't do anything
       var confirmed = this.filteredArticles.show.length < 20 ? true : confirm(`You're sure you want to mark ${this.filteredArticles.show.length} articles read?`);
       if(confirmed){
+        var that = this;
         $(this.filteredArticles.show).each(function(i,article){
           removeTitle(article,$(article).data('title'),{term: 'Marked read'});
+          that.$filterBar.val('');
+          that.applyFilter();
         });
       }
     }
