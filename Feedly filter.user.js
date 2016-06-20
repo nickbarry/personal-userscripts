@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.1
+// @version      3.1.1
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -29,7 +29,7 @@ var FilterMaker = (function(){
     this.$markFilteredAsRead = $('<button id="mark-filtered-as-read">Mark filtered articles as read</button>');
     this.$markFilteredAsRead.on('click',this.markFilteredAsRead.bind(this));
 
-    this.filteredArticles = {show: null, hide: null};
+    this.filteredArticles = {show: [], hide: []};
 
     //this.filterBar = document.createElement('input'); // Create a filterBar element I can use
     //var type = document.createAttribute('type'); // Add attributes to the filterBar
@@ -91,7 +91,7 @@ var FilterMaker = (function(){
   FilterMaker.prototype.detectArticles = function(){
     var articles = articlesExist();
     if(articles){
-      window.setInterval(this.reviewArticles.bind(this), 5000);
+      window.setInterval(this.reviewArticles.bind(this), 1000);
       window.clearInterval(this.detectArticleTimer);
     }
   }
@@ -141,12 +141,17 @@ var FilterMaker = (function(){
       this.latestArticle = i; // Update my latest article tracker, which should now be equal
       // to the length of titles (i.e., one index value higher than the highest actual index
       // in titles).
+
+      if(document.getElementById('article-filter').value){
+        this.applyFilter();
+      }
     }
   }
 
   FilterMaker.prototype.applyFilter = function applyFilter(){
     var filterText = document.getElementById('article-filter').value;
     this.filteredArticles = this.getArticlesToHide(filterText);
+    this.$markFilteredAsRead.text(`Mark ${this.filteredArticles.show.length} filtered articles as read`);
     this.filteredArticles.show.forEach(article => article.style.display = '');
     this.filteredArticles.hide.forEach(article => article.style.display = 'none');
   }
@@ -180,9 +185,14 @@ var FilterMaker = (function(){
   };
 
   FilterMaker.prototype.markFilteredAsRead = function(){
-    $(this.filteredArticles.show).each(function(i,article){
-      removeTitle(article,$(article).data('title'),{term: 'Marked read'});
-    });
+    if(this.filteredArticles.show !== null){ // If it's null, we haven't used the filter bar yet, and we shouldn't do anything
+      var confirmed = this.filteredArticles.show.length < 20 ? true : confirm(`You're sure you want to mark ${this.filteredArticles.show.length} articles read?`);
+      if(confirmed){
+        $(this.filteredArticles.show).each(function(i,article){
+          removeTitle(article,$(article).data('title'),{term: 'Marked read'});
+        });
+      }
+    }
   };
 
   return FilterMaker;
