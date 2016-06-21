@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.1.4
+// @version      3.2
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -51,7 +51,7 @@ var FilterMaker = (function(){
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
     /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
-    /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,
+    /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
@@ -60,7 +60,7 @@ var FilterMaker = (function(){
     /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
-    /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,
+    /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/e-?book/,
     /blackberry/,/atari/,/game ?boy/,/camera/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
@@ -162,12 +162,17 @@ var FilterMaker = (function(){
     var allArticles = [];
 
     var getArticlesToHide = function(term){
-      term = term.toLowerCase();
+      if('/' === term[0] && '/' === term[term.length - 1]){ // regex
+        term = new RegExp(term.slice(1,-1), 'i'); // Create new regex
+        console.log(term);
+      }else{
+        term = term.toLowerCase();
+      }
       allArticles = allArticles.length ? allArticles : articlesExist(); // Fetch titles if they don't exist
       var articlesToHide = allArticles
-          .filter(article => !~article.dataset.title.toLowerCase().indexOf(term));
+          .filter(article => !~article.dataset.title.toLowerCase().search(term));
       var articlesToShow = allArticles
-          .filter(article => ~article.dataset.title.toLowerCase().indexOf(term));
+          .filter(article => ~article.dataset.title.toLowerCase().search(term));
       return {
         hide: articlesToHide,
         show: articlesToShow
