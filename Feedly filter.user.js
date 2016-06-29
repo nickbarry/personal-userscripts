@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.3
+// @version      3.2.4
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -75,8 +75,8 @@ var FilterMaker = (function(){
     /* Health */
     /juice cleanse/,/menstrua/,/juicer/,
 
-    /* Shopping */
-    /amazon deals/,
+    /* Brands */
+    /amazon deals/,/pepsi/,
 
     /* Specific issues */
     /beer/,/wine/,/heineken/,/bud[ -]light/,
