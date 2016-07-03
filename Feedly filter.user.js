@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.6
+// @version      3.2.7
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -52,13 +52,16 @@ var FilterMaker = (function(){
     /cable box/,/roku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
     /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,/suicide squad/,
-    /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,
+    /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
+    /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,
+
+    /* Politics */ /hastert/,
 
     /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
     /\bmac ?os\b/,/\bapple/,/iphone/,/\bopera\b/,/safari/,
 
-    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,
+    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/\be-?book/,
@@ -71,26 +74,24 @@ var FilterMaker = (function(){
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
-    /breakfast table/, / edition$/,
+    /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,
 
-    /* Health */
-    /juice cleanse/,/menstrua/,/juicer/,
+    /* food */
+    /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
+    /starbucks/,/mcdonald's/,
 
-    /* Brands */
+    /* Brands, shopping */
     /amazon deals/,/pepsi/,
 
-    /* Specific issues */
-    /beer/,/wine/,/heineken/,/bud[ -]light/,
-    /transgender/,/transsex/,/trans /,/trans-s/,/transpho/,/trans$/, // Trying not to rule out trans-pacific partnership
+    /* Social and health issues */
+    /transgender/,/transsex/,/trans /,/trans-s/,/transpho/,/trans$/,/menstrua/,/slut[ -]sham/,/zika/,/abortion/,
     /plus[- ]size/,
-    /vape/,/vaping/,/\bedibles/,/pot edible/,/marijuana edible/,/weed edible/,/weed butter/,/pot butter/,/420/,/stoner/,
-    /zika/,
-    /coffee/,/caffeine/,/espresso/,/starbucks/,
-    /abortion/,
-    /slut[ -]sham/,
-    /ticketmaster/,
 
-    /* Misc */ /mcdonald's/];
+    /* Drugs etc. */
+    /vape/,/vaping/,/\bedibles/,/pot edible/,/marijuana edible/,/weed edible/,/weed butter/,/pot butter/,/420/,/stoner/,
+
+    /* Misc */ /ticketmaster/,
+  ];
 
   // Once articles are detected, set a regular interval to review and hide newly-loaded articles that match exclusion terms
   FilterMaker.prototype.detectArticles = function(){
