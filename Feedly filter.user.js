@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.7
+// @version      3.2.8
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -53,32 +53,32 @@ var FilterMaker = (function(){
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
     /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,/suicide squad/,
     /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
-    /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,
+    /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,
 
     /* Politics */ /hastert/,
 
-    /* Apple stuff */ /\bmacs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
+    /* Apple stuff */ /\bi?macs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
     /\bmac ?os\b/,/\bapple/,/iphone/,/\bopera\b/,/safari/,
 
-    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,
+    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,/chromecast/,/snapchat/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/\be-?book/,
-    /blackberry/,/atari/,/game ?boy/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,
+    /blackberry/,/atari/,/game ?boy/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,/spotify/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
-    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,
+    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,/world cup/,/kevin durant/,
 
-    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/this week's top downloads/,
+    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/this week's top downloads/,/policy daily/,
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
-    /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,
+    /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
 
     /* food */
     /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
-    /starbucks/,/mcdonald's/,
+    /starbucks/,/mcdonald['’]?s/,
 
     /* Brands, shopping */
     /amazon deals/,/pepsi/,
@@ -100,7 +100,7 @@ var FilterMaker = (function(){
       window.setInterval(this.reviewArticles.bind(this), 1000);
       window.clearInterval(this.detectArticleTimer);
     }
-  }
+  };
 
   FilterMaker.prototype.pageChangeReset = function(memoizedFn){
     this.currentUrl = window.location.href;
