@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.8
+// @version      3.2.10
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -53,7 +53,7 @@ var FilterMaker = (function(){
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
     /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,/suicide squad/,
     /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
-    /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,
+    /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
 
     /* Politics */ /hastert/,
 
@@ -61,7 +61,7 @@ var FilterMaker = (function(){
     /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
     /\bmac ?os\b/,/\bapple/,/iphone/,/\bopera\b/,/safari/,
 
-    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,/chromecast/,/snapchat/,
+    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,/chromecast/,/snapchat/,/plasma/,
     /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/\be-?book/,
@@ -75,6 +75,7 @@ var FilterMaker = (function(){
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
     /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
+    /feministing reads/,
 
     /* food */
     /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
