@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.11
+// @version      3.2.12
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -47,7 +47,7 @@ var FilterMaker = (function(){
     /* Temp items */ /\bprince/,
 
     /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,/\boprah/,/kate hudson/,
-    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,
+    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,/kelly clarkson/,
     /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
     /cable box/,/\broku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
     /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
