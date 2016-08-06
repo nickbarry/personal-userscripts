@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.16
+// @version      3.2.17
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -24,7 +24,7 @@ var FilterMaker = (function(){
     this.counter = 0; // A counter I can use for various testing scenarios
 
     this.$filterBar = $('<input type="text" id="article-filter">');
-    this.$filterBar.on('keyup',this.applyFilter.bind(this))
+    this.$filterBar.on('keyup',this.applyFilter.bind(this));
 
     this.$markFilteredAsRead = $('<button id="mark-filtered-as-read">Mark filtered articles as read</button>');
     this.$markFilteredAsRead.on('click',this.markFilteredAsRead.bind(this));
@@ -54,7 +54,7 @@ var FilterMaker = (function(){
     /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,/suicide squad/,
     /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
     /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
-    /appelbaum/,/\bolympi/,
+    /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,
 
     /* Politics */ /hastert/,
 
