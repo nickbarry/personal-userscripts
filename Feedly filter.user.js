@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.20
+// @version      3.2.21
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -54,7 +54,8 @@ var FilterMaker = (function(){
     /half[ -]?life/,/\bthor\b/,/season \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,/suicide squad/,
     /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
     /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
-    /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,/hulu/,/phelps/,/whopperito/,/no man['’]?s sky/,
+    /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,/hulu/,/phelps/,/whopperito/,/no man['’]?s sky/,/frank ocean/,
+    /kobe bryant/,
 
     /* Politics */ /hastert/,
 
@@ -76,7 +77,7 @@ var FilterMaker = (function(){
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
     /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
-    /feministing reads/,
+    /feministing reads/,/culture podcast/,
 
     /* food */
     /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
