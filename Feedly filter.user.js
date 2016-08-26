@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.21
+// @version      3.2.22
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -44,7 +44,7 @@ var FilterMaker = (function(){
 
   // PRIVATE VARIABLES
   var termsToExclude = [
-    /* Temp items */ /\brio\b/,
+    /* Temp items */ /\brio\b/,/epi-?pen/,
 
     /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,/\boprah/,/kate hudson/,
     /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,/kelly clarkson/,
@@ -55,7 +55,7 @@ var FilterMaker = (function(){
     /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
     /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
     /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,/hulu/,/phelps/,/whopperito/,/no man['’]?s sky/,/frank ocean/,
-    /kobe bryant/,
+    /kobe bryant/,/mlb/,/song exploder/,/book club/,/\bwwe\b/,/burqini/,
 
     /* Politics */ /hastert/,
 
@@ -64,10 +64,11 @@ var FilterMaker = (function(){
     /\bmac ?os\b/,/\bapple/,/iphone/,/\bopera\b/,/safari/,
 
     /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,/chromecast/,/snapchat/,/plasma/,/\bfios/,
-    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,
+    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,/whatsapp/,
     /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
     /computer game/,/arduino/,/spotify/,/at&t/,/x-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/\be-?book/,
     /blackberry/,/atari/,/game ?boy/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,/spotify/,
+    /photos of the week/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
     /fanduel/,/soccer/,/sports/,/golf/,/warriors/,/world cup/,/kevin durant/,
@@ -77,7 +78,7 @@ var FilterMaker = (function(){
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
     /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
-    /feministing reads/,/culture podcast/,
+    /feministing reads/,/culture podcast/,/gadget ?lab podcast/,
 
     /* food */
     /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
