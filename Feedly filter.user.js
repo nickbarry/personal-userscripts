@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.24
+// @version      3.2.25
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -78,7 +78,7 @@ var FilterMaker = (function(){
     /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
     /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
     /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
-    /feministing reads/,/culture podcast/,/gadget ?lab podcast/,/friday favorites/,
+    /feministing reads/,/culture podcast/,/gadget ?lab podcast/,/friday favorites/,/^(\| )?two cents/,/^(\| )?lanesplit/,
 
     /* food */
     /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
