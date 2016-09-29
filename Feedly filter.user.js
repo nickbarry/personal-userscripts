@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.26
+// @version      3.2.27
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -71,7 +71,7 @@ var FilterMaker = (function(){
     /photos of the week/,
 
     /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
-    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,/world cup/,/kevin durant/,
+    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,/world cup/,/kevin durant/,/baseball/,
 
     /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/this week's top downloads/,/policy daily/,
     /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
