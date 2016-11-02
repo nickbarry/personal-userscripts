@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.29
+// @version      3.2.30
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -56,7 +56,7 @@ var FilterMaker = (function(){
     /season premiere/,/season \d/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
     /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,/hulu/,/phelps/,/whopperito/,/no man['’]?s sky/,/frank ocean/,
     /kobe bryant/,/mlb/,/song exploder/,/book club/,/\bwwe\b/,/burqini/,/\bsyfy\b/,/stranger things/,/luke cage/,
-    /rogue one/,
+    /rogue one/,/black friday/,/cyber monday/,
 
     /* Politics */ /hastert/,
 
