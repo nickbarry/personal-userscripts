@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.2.30
+// @version      3.3.0
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -30,16 +30,6 @@ var FilterMaker = (function(){
     this.$markFilteredAsRead.on('click',this.markFilteredAsRead.bind(this));
 
     this.filteredArticles = {show: [], hide: []};
-
-    //this.filterBar = document.createElement('input'); // Create a filterBar element I can use
-    //var type = document.createAttribute('type'); // Add attributes to the filterBar
-    //type.value = 'text';
-    //var id = document.createAttribute('id');
-    //id.value = 'article-filter';
-    //this.filterBar.setAttributeNode(type);
-    //this.filterBar.setAttributeNode(id);
-    //
-    //this.filterBar.addEventListener('keyup',this.applyFilter.bind(this));
   }
 
   // PRIVATE VARIABLES
@@ -135,7 +125,6 @@ var FilterMaker = (function(){
     });
 
     if(titles.length > this.latestArticle){ // If new articles have loaded
-      console.log('New articles have loaded!');
       this.getArticlesToHide.clear();
       for(var i = this.latestArticle; i < titles.length; i++){
         var title = titles[i];
@@ -155,7 +144,8 @@ var FilterMaker = (function(){
       // to the length of titles (i.e., one index value higher than the highest actual index
       // in titles).
 
-      if(document.getElementById('article-filter').value){
+      const articleFilter = document.getElementById('article-filter');
+      if(articleFilter && articleFilter.value){
         this.applyFilter();
       }
     }
@@ -175,15 +165,14 @@ var FilterMaker = (function(){
     var getArticlesToHide = function(term){
       if('/' === term[0] && '/' === term[term.length - 1]){ // regex
         term = new RegExp(term.slice(1,-1), 'i'); // Create new regex
-        console.log(term);
       }else{
         term = term.toLowerCase();
       }
       allArticles = allArticles.length ? allArticles : articlesExist(); // Fetch titles if they don't exist
       var articlesToHide = allArticles
-          .filter(article => !~article.dataset.title.toLowerCase().search(term));
+        .filter(article => !~article.dataset.title.toLowerCase().search(term));
       var articlesToShow = allArticles
-          .filter(article => ~article.dataset.title.toLowerCase().search(term));
+        .filter(article => ~article.dataset.title.toLowerCase().search(term));
       return {
         hide: articlesToHide,
         show: articlesToShow
@@ -262,7 +251,7 @@ var FilterMaker = (function(){
 
   // Checks if the articles have loaded yet in Feedly; if so, returns the article titles array
   function articlesExist(){
-    var articles = toArray(document.getElementsByClassName('u0Entry'));
+    var articles = toArray(document.getElementsByClassName('u0'));
     if(articles.length){
       return articles;
     }else{
@@ -272,7 +261,7 @@ var FilterMaker = (function(){
 
   function removeTitle(articleHtmlObj,title,excludedTermCheck){
     console.log(excludedTermCheck.term + ": " + title);
-    articleHtmlObj.children[0].children[3].click();
+    articleHtmlObj.getElementsByClassName('icon-fx-cross-ios-sm-black')[0].click();
   }
 })();
 
