@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.1
+// @version 	 0.3.3
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -55,7 +55,7 @@ function taskOverdueByXDays($task) {
 
 function determineNewPriority(taskPriorityGradient, taskIsOverdueXDays) {
   return taskPriorityGradient
-    .match(/{(?:\d+): ?(?:\d+)}/g)                          // Get each separate priority tupel
+    .match(/(?:\d+): ?(?:\d+)/g)                            // Get each separate priority tupel
     .map(str => str.match(/\d+/g))                          // Separate out the numbers
     .sort((a, b) => b[0] - a[0])                            // Sort in descending order of days late
     .filter(tupel => tupel[0] <= taskIsOverdueXDays)[0][1]; // Get priority tupel with greatest days late, and get its corresponding priority
@@ -69,7 +69,7 @@ function determineNewPriority(taskPriorityGradient, taskIsOverdueXDays) {
 // need to have this function run frequently.
 function modifyTaskPriority($task) {
   const taskText = $task.find('span.sel_item_content').text();
-  const taskHasPriorityGradient = taskText.match(/\[(?:{\d+: ?\d+}, ?)*(?:{\d+: ?\d+})]/);
+  const taskHasPriorityGradient = taskText.match(/\[(?:\d+: ?\d+, ?)*(?:\d+: ?\d+)]/);
   const taskPriorityGradient = taskHasPriorityGradient ? taskHasPriorityGradient[0] : null;
   const taskIsOverdueXDays = taskOverdueByXDays($task);
 
