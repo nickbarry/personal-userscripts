@@ -89,7 +89,20 @@ function modifyTaskPriority($task) {
 }
 
 function modifyAllTaskPriorities() {
-  $('.task_item').each((i, task) => modifyTaskPriority($(task)));
+  // Update priorities
+  const $task_items = $('.task_item');
+  $task_items.each((i, task) => modifyTaskPriority($(task)));
+
+  // Sort tasks by priority
+  const $tasksContainer = $('#editor').find('ul.items');
+  $task_items.sort((a, b) => {
+    const aPriority = $(a).attr('class').match(/priority_(\d)/)[1];
+    const bPriority = $(b).attr('class').match(/priority_(\d)/)[1];
+
+    // Sort in descending order of priority; recall that in the classes they use, priority 4 is equivalent to priority 1 in the user interface.
+    return bPriority - aPriority;
+  });
+  $task_items.detach().appendTo($tasksContainer);
 }
 
 $(document).ready(function () {
