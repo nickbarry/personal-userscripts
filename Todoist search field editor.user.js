@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.8
+// @version 	 0.3.9
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -37,9 +37,9 @@ function taskOverdueByXDays($task) {
   const $taskDate = $task.find('span.date');
   const taskDateClasses = $taskDate.attr('class');
 
-  if (~taskDateClasses.indexOf('date_overdue')) {
+  if ($taskDate.length && ~taskDateClasses.indexOf('date_overdue')) { // If the task HAS a date, and it's overdue
     const dateText = $taskDate.text();
-    if (~dateText.indexOf('yesterday')) { // If it's due yesterday, then it's 1 day overdue
+    if (~dateText.toLowerCase().indexOf('yesterday')) { // If it's due yesterday, then it's 1 day overdue
       return 1;
     } else { // Otherwise subtract the due date from the current time
       // Detect whether the date text contains a year. If it doesn't, we'll need to add the current year before converting to a Date object.
@@ -53,7 +53,7 @@ function taskOverdueByXDays($task) {
   return 0; // If the task isn't overdue
 }
 
-function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriorityMatch }) {
+function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriority }) {
   if (taskPriorityGradient) { // If there's an explicit priority gradient, prefer to use that
     const relevantPriorityGradientTupels = taskPriorityGradient
       .match(/(?:\d+): ?(?:\d+)/g)                      // Get each separate priority tupel
@@ -62,7 +62,7 @@ function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDa
       .filter(tupel => tupel[0] <= taskIsOverdueXDays); // Filter out any priority tupels that apply to tasks that are MORE overdue than the current task
     return relevantPriorityGradientTupels.length ? // check if there are any relevant tupels
       relevantPriorityGradientTupels[0][1] : // Get priority tupel with greatest days late, and get its corresponding priority
-      currentPriorityMatch[1]; // If there are no relevant tupels, i.e. the task is overdue but not overdue enough to be increased in priority, return current priority
+      currentPriority; // If there are no relevant tupels, i.e. the task is overdue but not overdue enough to be increased in priority, return current priority
   }
 
   // If there's no explicit priority gradient, then compare how overdue it is to its task frequency. (Tasks should only
@@ -80,12 +80,12 @@ function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDa
     } else { // else it's a day of the week thing, like a Monday task ('m: Pack...')
       period = 7;
     }
-    const calculatedPriority = currentPriorityMatch[1] - Math.floor( // Start with the current priority...
+    const calculatedPriority = currentPriority - Math.floor( // Start with the current priority...
         taskIsOverdueXDays / period              // ...and subtract off however many multiples of the period the task is currently overdue. I.e., a weekly task that's 17 days late is two periods late
       );
     return Math.max(1, calculatedPriority); // Make sure not to return a meaningless priority, i.e. anything less than 1
   } else { // If there's no explicitly noted period...
-    return currentPriorityMatch[1]; // ...then return the current priority, since it isn't easy to discover the priority otherwise
+    return currentPriority; // ...then return the current priority, since it isn't easy to discover the priority otherwise
     // todo: It might be possible to programmatically hover over the recurring icon, which causes a modal to appear. That modal
     // describes the period of the task. This is low priority because I tend to mark tasks in the task title if they're recurring.
   }
@@ -109,17 +109,18 @@ function modifyTaskPriority($task) {
   // If the task text has a priority gradient, such as [{7:2},{14:1}], and the task is overdue
   if (taskIsOverdueXDays && (taskPriorityGradient || taskIsRepeating)) {
     // Discover the current priority assigned to this task
-    const currentPriorityMatch = $task.attr('class').match(/priority_([1234])/); // e.g., ["priority_2", "2"]
+    const currentPriority = 5 - $task.attr('class').match(/priority_([1234])/)[1]; // Convert from 4-1 system for css classes to 1-4 system used in UI
 
-    const newPriority = determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriorityMatch });
+    const newPriority = determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriority });
 
     // The UI uses a 1-4 priority scale, with 1 as the highest priority. But the CSS classes use a 4-1 scale, with 4 as
     // the most important. So we need to convert between them.
     const newPriorityClass = `priority_${5 - newPriority}`;
 
-    if (+newPriority < +currentPriorityMatch[1]) { // determineNewPriority may infer a priority that's the same as the current priority, or less than it (lower priority i.e. higher number), in which case we should always defer to the existing priority
-      $task.removeClass(currentPriorityMatch[0]).addClass(newPriorityClass);
+    if (+newPriority < currentPriority) { // determineNewPriority may infer a priority that's the same as the current priority, or less than it (lower priority i.e. higher number), in which case we should always defer to the existing priority
+      $task.removeClass(`priority_${5-currentPriority}`).addClass(newPriorityClass);
       $task.css('background-color', '#fcf2d9');
+      console.log(`Task upgraded from priority ${currentPriority} to ${newPriority}: ${taskText}`);
     }
   }
 }
