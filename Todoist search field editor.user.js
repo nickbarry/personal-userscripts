@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.4
+// @version 	 0.3.5
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -55,11 +55,14 @@ function taskOverdueByXDays($task) {
 
 function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriorityMatch }) {
   if (taskPriorityGradient) { // If there's an explicit priority gradient, prefer to use that
-    return taskPriorityGradient
-      .match(/(?:\d+): ?(?:\d+)/g)                            // Get each separate priority tupel
-      .map(str => str.match(/\d+/g))                          // Separate out the numbers
-      .sort((a, b) => b[0] - a[0])                            // Sort in descending order of days late
-      .filter(tupel => tupel[0] <= taskIsOverdueXDays)[0][1]; // Get priority tupel with greatest days late, and get its corresponding priority
+    const relevantPriorityGradientTupels = taskPriorityGradient
+      .match(/(?:\d+): ?(?:\d+)/g)                      // Get each separate priority tupel
+      .map(str => str.match(/\d+/g))                    // Separate out the numbers
+      .sort((a, b) => b[0] - a[0])                      // Sort in descending order of days late
+      .filter(tupel => tupel[0] <= taskIsOverdueXDays); // Filter out any priority tupels that apply to tasks that are MORE overdue than the current task
+    return relevantPriorityGradientTupels.length ? // check if there are any relevant tupels
+      relevantPriorityGradientTupels[0][1] : // Get priority tupel with greatest days late, and get its corresponding priority
+      currentPriorityMatch[1]; // If there are no relevant tupels, i.e. the task is overdue but not overdue enough to be increased in priority, return current priority
   }
 
   // If there's no explicit priority gradient, then compare how overdue it is to its task frequency. (Tasks should only
