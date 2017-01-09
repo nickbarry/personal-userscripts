@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.6
+// @version 	 0.3.7
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -117,7 +117,7 @@ function modifyTaskPriority($task) {
     // the most important. So we need to convert between them.
     const newPriorityClass = `priority_${5 - newPriority}`;
 
-    if (+newPriority !== +currentPriorityMatch[1]) { // determineNewPriority may infer a priority that's the same as the current priority
+    if (newPriority > currentPriorityMatch[1]) { // determineNewPriority may infer a priority that's the same as the current priority, or less than it, in which case we should always defer to the existing priority
       $task.removeClass(currentPriorityMatch[0]).addClass(newPriorityClass);
       $task.css('background-color', '#fcf2d9');
     }
