@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.3
+// @version 	 0.3.4
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
