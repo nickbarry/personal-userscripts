@@ -53,12 +53,39 @@ function taskOverdueByXDays($task) {
   return 0; // If the task isn't overdue
 }
 
-function determineNewPriority(taskPriorityGradient, taskIsOverdueXDays) {
-  return taskPriorityGradient
-    .match(/(?:\d+): ?(?:\d+)/g)                            // Get each separate priority tupel
-    .map(str => str.match(/\d+/g))                          // Separate out the numbers
-    .sort((a, b) => b[0] - a[0])                            // Sort in descending order of days late
-    .filter(tupel => tupel[0] <= taskIsOverdueXDays)[0][1]; // Get priority tupel with greatest days late, and get its corresponding priority
+function determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriorityMatch }) {
+  if (taskPriorityGradient) { // If there's an explicit priority gradient, prefer to use that
+    return taskPriorityGradient
+      .match(/(?:\d+): ?(?:\d+)/g)                            // Get each separate priority tupel
+      .map(str => str.match(/\d+/g))                          // Separate out the numbers
+      .sort((a, b) => b[0] - a[0])                            // Sort in descending order of days late
+      .filter(tupel => tupel[0] <= taskIsOverdueXDays)[0][1]; // Get priority tupel with greatest days late, and get its corresponding priority
+  }
+
+  // If there's no explicit priority gradient, then compare how overdue it is to its task frequency. (Tasks should only
+  // be sent to this function if the task is a repeating task.) An overdue repeating task should be upgraded in priority
+  // according to this rule: Calculate the task's period (e.g. it repeats every 8 days). For each period it's late,
+  // increase its priority (up to priority 1).
+  const periodMatch = taskText.match(/^(\d*)d(?:ly)?:/i) || // Text like '6d: Pack..." at the beginning of the task indicates a period
+    taskText.match(/^(th|[mtwfsu]):/i); // Text like 'm: Pack...' also indicates a weekly period (e.g. on mondays)
+  if (periodMatch) {
+    let period;
+    if (periodMatch[1] === '') { // Daily tasks are written "d: Pack..." or "dly: pack" instead of "1d: Pack..."; the regex will find an empty string
+      period = 1;
+    } else if (periodMatch[1].match(/\d+/)) { // else if it's a numeric digit(s)
+      period = +periodMatch[1];
+    } else { // else it's a day of the week thing, like a Monday task ('m: Pack...')
+      period = 7;
+    }
+    const calculatedPriority = currentPriorityMatch[1] - Math.floor( // Start with the current priority...
+        taskIsOverdueXDays / period              // ...and subtract off however many multiples of the period the task is currently overdue. I.e., a weekly task that's 17 days late is two periods late
+      );
+    return Math.max(1, calculatedPriority); // Make sure not to return a meaningless priority, i.e. anything less than 1
+  } else { // If there's no explicitly noted period...
+    return currentPriorityMatch[1]; // ...then return the current priority, since it isn't easy to discover the priority otherwise
+    // todo: It might be possible to programmatically hover over the recurring icon, which causes a modal to appear. That modal
+    // describes the period of the task. This is low priority because I tend to mark tasks in the task title if they're recurring.
+  }
 }
 
 // The user may have included some text in the task title that describes an escalating series of priorities for the task
@@ -72,19 +99,24 @@ function modifyTaskPriority($task) {
   const taskHasPriorityGradient = taskText.match(/\[(?:\d+: ?\d+, ?)*(?:\d+: ?\d+)]/);
   const taskPriorityGradient = taskHasPriorityGradient ? taskHasPriorityGradient[0] : null;
   const taskIsOverdueXDays = taskOverdueByXDays($task);
+  const taskIsRepeating = (taskPriorityGradient || !taskIsOverdueXDays) ?
+    null : // If there's an explicit priority gradient, or if the task isn't even overdue, we don't care if it's a repeating task
+    !!$task.find('img.recurring_icon').length; // If there's a recurring icon, then it's a repeating task, which we can use to infer a priority gradient
 
   // If the task text has a priority gradient, such as [{7:2},{14:1}], and the task is overdue
-  if (taskPriorityGradient && taskIsOverdueXDays) {
-    const newPriority = determineNewPriority(taskPriorityGradient, taskIsOverdueXDays);
+  if (taskIsOverdueXDays && (taskPriorityGradient || taskIsRepeating)) {
+    // Discover the current priority assigned to this task
+    const currentPriorityMatch = $task.attr('class').match(/priority_([1234])/); // e.g., ["priority_2", "2"]
+
+    const newPriority = determineNewPriority({ taskText, taskPriorityGradient, taskIsOverdueXDays, currentPriorityMatch });
 
     // The UI uses a 1-4 priority scale, with 1 as the highest priority. But the CSS classes use a 4-1 scale, with 4 as
     // the most important. So we need to convert between them.
     const newPriorityClass = `priority_${5 - newPriority}`;
 
-    // Discover the current priority assigned to this task
-    const currentPriority = $task.attr('class').match(/priority_[1234]/)[0];
-
-    $task.removeClass(currentPriority).addClass(newPriorityClass);
+    if (+newPriority !== +currentPriorityMatch[1]) { // determineNewPriority may infer a priority that's the same as the current priority
+      $task.removeClass(currentPriorityMatch[0]).addClass(newPriorityClass);
+    }
   }
 }
 
