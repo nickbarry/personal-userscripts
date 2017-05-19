@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.3.9
+// @version 	 0.3.10
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -17,7 +17,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 // This sets the placeholder text of the search field as the contents of the search field (i.e. the field's value)
 function editSearch($quickFind) {
   // If there isn't already a value in the quickFind field
-  if (!$quickFind.val()) {
+  if (!$quickFind.val() && $quickFind.attr('placeholder').toLowerCase() !== 'quick find') {
     $quickFind.val($quickFind.attr('placeholder'));
   }
 }
