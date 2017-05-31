@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.4.11
+// @version 	 0.4.12
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -162,16 +162,18 @@ async function eachPromise(asyncFns) {
   }
 }
 
-function isSeparatedByDateView() {
+function canReprioritizeTasks() {
+  // Avoid all the wrong types of headers
   const overdueSectionList = $('.section_overdue');
-  return Boolean(overdueSectionList.length);
+  const projectHeaders = $('.project_header');
+  return !overdueSectionList.length && !projectHeaders.length;
 }
 
 $(document).ready(function () {
   const $quickFind = $('#quick_find input');
   // Update the priorities of all the tasks, but not if the view has separate date buckets (which doesn't play nicely
   // with my `modify` function)
-  if (!isSeparatedByDateView()) {
+  if (canReprioritizeTasks()) {
     modifyAllTaskPriorities();
   }
 
@@ -184,7 +186,7 @@ $(document).ready(function () {
 
     // Update the priorities of all the tasks, but not if the view has separate date buckets (which doesn't play nicely
     // with my `modify` function)
-    if (!isSeparatedByDateView()) {
+    if (canReprioritizeTasks()) {
       modifyAllTaskPriorities();
     }
   });
