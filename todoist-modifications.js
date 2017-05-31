@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 		 Todoist modifications
 // @namespace 	 http://nicholasbarry.com/
-// @version 	 0.4.10
+// @version 	 0.4.11
 // @updateURL    https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @downloadURL  https://github.com/nickbarry/personal-userscripts/raw/master/Todoist%20search%20field%20editor.user.js
 // @description  Allows a user to edit the current search query in Todoist
@@ -209,10 +209,18 @@ class DownloadMedia {
   }
 }
 
+function isSeparatedByDateView() {
+  const overdueSectionList = $('.section_overdue');
+  return Boolean(overdueSectionList.length);
+}
 
 $(document).ready(function () {
   const $quickFind = $('#quick_find input');
-  modifyAllTaskPriorities();
+  // Update the priorities of all the tasks, but not if the view has separate date buckets (which doesn't play nicely
+  // with my `modify` function)
+  if (!isSeparatedByDateView()) {
+    modifyAllTaskPriorities();
+  }
 
   // Update the contents of the search field when the user clicks into it
   $quickFind.focus(() => editSearch($quickFind));
@@ -221,8 +229,11 @@ $(document).ready(function () {
     // Display the query associated with a filter whenever the user clicks a filter
     displayFilterQuery($quickFind);
 
-    // Update the priorities of all the tasks
-    modifyAllTaskPriorities();
+    // Update the priorities of all the tasks, but not if the view has separate date buckets (which doesn't play nicely
+    // with my `modify` function)
+    if (!isSeparatedByDateView()) {
+      modifyAllTaskPriorities();
+    }
   });
 
 //  // Media downloader
