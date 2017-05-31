@@ -162,54 +162,6 @@ async function eachPromise(asyncFns) {
   }
 }
 
-function getPosition(element) {
-  var xPosition = 0;
-  var yPosition = 0;
-
-  while(element) {
-    xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-  return { x: xPosition, y: yPosition };
-}
-
-const selectors = {
-  noteClass: '.note_text',
-  noteContent: '.note_content',
-};
-
-class DownloadMedia {
-  static async investigate() {
-    console.log('Beginning investigation');
-    // TODO: Find, click, and await the "Fetch older comments" link
-    const $notes = $(selectors.noteClass);
-    eachPromise($notes.map((i, note) => (() => DownloadMedia.processOneNote(note))));
-  }
-
-  static async processOneNote(note) {
-    const $note = $(note);
-    const noteContentNodes = $note.find(selectors.noteContent)[0].childNodes;
-    const noteHasOneLink = noteContentNodes.length === 1 && noteContentNodes[0].tagName === 'A';
-    if (noteHasOneLink) {
-      const $a = $(noteContentNodes[0]);
-      // TODO:
-      // Start from the bottom note since that's in view
-      // Detect position
-      // Move cursor to hover over it
-      // Detect the pop-up loading icon and then the image
-        // When the image is ready, trigger download (maybe via ctrl-s, or by grabbing the image that's displaying)
-          // What about videos?
-          // Maybe don't need to wait for the image to load; maybe good as soon as the spinner appears
-            // But what about multi-image posts? Also need to handle them
-      // Delete note
-      // If the note wasn't a downloadable/deletable, scroll the page so I can hover the mouse over the next link?
-      console.log($a.attr('href'));
-    }
-  }
-}
-
-
 $(document).ready(function () {
   const $quickFind = $('#quick_find input');
   modifyAllTaskPriorities();
@@ -224,10 +176,4 @@ $(document).ready(function () {
     // Update the priorities of all the tasks
     modifyAllTaskPriorities();
   });
-
-//  // Media downloader
-//  const taskRegex = /#task%2F105707030$/;
-//  if (taskRegex.test(window.location.href)) {
-//    window.setTimeout(DownloadMedia.investigate, 2000);
-//  }
 });
