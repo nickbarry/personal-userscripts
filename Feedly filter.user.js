@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
-// @version      3.3.3
+// @version      3.4.3
 // @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
 // @author       Nico Barry
@@ -38,58 +38,58 @@ var FilterMaker = (function(){
     // TODO: Also allow strings
     /* Temp items */
 
-    /* Pop culture */ /kardashian/,/kanye/,/downton/,/walking dead/,/whiskey tango foxtrot/,/\boprah/,/kate hudson/,
-    /\btvs?\b/,/game of throne/,/\bhbo\b/,/oscar/,/grammy/,/golden globe/,/emoji/,/emoticon/,/drake/,/kelly clarkson/,
-    /Jay Z/,/divergent/,/lil'? kim/,/netflix/,/\brapper/,/ke[s$]ha/,/instagram/,/tidal/,/mtv/,/coachella/,/espn/,
-    /cable box/,/\broku/,/samantha bee/,/full frontal/,/kylie jenner/,/bruce jenner/,/doctor who/,/beyonc[eé]/,/beyhive/,
-    /hunger games/,/tony award/,/tony'?s/,/hollywood/,/powerball/,/captain america/,/bieber/,/george r\. ?r\. martin/,
-    /half[ -]?life/,/\bthor\b/,/season \d/,/episode \d/,/orange.*new black/,/the bachelor/,/yelchin/,/taylor swift/,
-    /star trek/,/trekkie/,/ghost ?buster/,/power ranger/,/warcraft/,/trump time capsule/,/big brother/,/bet award/,
-    /season premiere/,/broadway/,/america's got talent/,/zelda/,/binge[ -]?watch/,/pokemon/,/mr. robot/,
-    /appelbaum/,/\bolympi/,/\bpoké/,/pok[ée]mon/,/hulu/,/phelps/,/whopperito/,/no man['’]?s sky/,/frank ocean/,
-    /kobe bryant/,/mlb/,/song exploder/,/book club/,/\bwwe\b/,/burqini/,/\bsyfy\b/,/stranger things/,/luke cage/,
-    /rogue one/,/black friday/,/cyber monday/,/westworld/,/suicide squad/,
+    /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',/\boprah/,'kate hudson',
+    /\btvs?\b/,'game of throne',/\bhbo\b/,'oscar','grammy','golden globe','emoji','emoticon','drake','kelly clarkson',
+    'jay z','divergent',/lil'? kim/,'netflix',/\brapper/,/ke[s$]ha/,'instagram','tidal','mtv','coachella','espn',
+    'cable box',/\broku/,'samantha bee','full frontal','kylie jenner','bruce jenner','doctor who',/beyonc[eé]/,'beyhive',
+    'hunger games','tony award',/tony'?s/,'hollywood','powerball','captain america','bieber',/george r\. ?r\. martin/,
+    /half[ -]?life/,/\bthor\b/,/season \d/,/episode \d/,/orange.*new black/,'the bachelor','yelchin','taylor swift',
+    'star trek','trekkie',/ghost ?buster/,'power ranger','warcraft','trump time capsule','big brother','bet award',
+    'season premiere','broadway','america\'s got talent','zelda',/binge[ -]?watch/,'pokemon',/mr. robot/,
+    'appelbaum',/\bolympi/,/\bpoké/,/pok[ée]mon/,'hulu','phelps','whopperito',/no man['’]?s sky/,'frank ocean',
+    'kobe bryant','mlb','song exploder','book club',/\bwwe\b/,'burqini',/\bsyfy\b/,'stranger things','luke cage',
+    'rogue one','black friday','cyber monday','westworld','suicide squad',
 
-    /* Politics */ /hastert/,
+    /* Politics */ 'hastert',
 
-    /* Apple stuff */ /\bi?macs?\b/,/ipad/,/apple watch/,/smartwatch/,/\bos ?x\b/,/ios game/,/apple game/,/ios app/,
-    /\bios/,/watchband/,/macbook/,/lightning cable/,/apple music/,/icloud/,/\bmacs\b/,/imessage/,
-    /\bmac ?os\b/,/\bapple/,/iphone/,/\bopera\b/,/safari/,
+    /* Apple stuff */ /\bi?macs?\b/,'ipad','apple watch','smartwatch',/\bos ?x\b/,'ios game','apple game','ios app',
+    /\bios/,'watchband','macbook','lightning cable','apple music','icloud',/\bmacs\b/,'imessage',
+    /\bmac ?os\b/,/\bapple/,'iphone',/\bopera\b/,'safari',
 
-    /* Technology */ /nvidia/,/\bhdr\b/,/\bacer\b/,/ps4/,/\bnes\b/,/kindle/,/chromecast/,/snapchat/,/plasma/,/\bfios/,
-    /hoverboard/,/streaming video/,/playstation/,/\bsims\b/,/video stream/,/tweetdeck/,/t-mobile/,/whatsapp/,
-    /sprint/,/raspberry pi/,/cyanogen/,/tech news digest/,/linux/,/game console/,/gaming/,/video ?game/,
-    /computer game/,/arduino/,/spotify/,/at&t/,/\bx-?box/,/coolest cooler/,/pebble/,/minecraft/,/gamer/,/\be-?book/,
-    /blackberry/,/atari/,/game ?boy/,/photography/,/canon/,/gamestop/,/nintendo/,/ubuntu/,/surround sound/,/spotify/,
-    /photos of the week/,/player/,
+    /* Technology */ 'nvidia',/\bhdr\b/,/\bacer\b/,'ps4',/\bnes\b/,'kindle','chromecast','snapchat','plasma',/\bfios/,
+    'hoverboard','streaming video','playstation',/\bsims\b/,'video stream','tweetdeck','t-mobile','whatsapp',
+    'sprint','raspberry pi','cyanogen','tech news digest','linux','game console','gaming',/video ?game/,
+    'computer game','arduino','spotify','at&t',/\bx-?box/,'coolest cooler','pebble','minecraft','gamer',/\be-?book/,
+    'blackberry','atari',/game ?boy/,'photography','canon','gamestop','nintendo','ubuntu','surround sound','spotify',
+    'photos of the week','player',
 
-    /* Sports */ /basketball/,/\bnba\b/,/football/,/\bnfl\b/,/adidas/,/reebok/,/nike/,/draftking/,
-    /fanduel/,/soccer/,/sports/,/golf/,/warriors/,/world cup/,/kevin durant/,/baseball/,/league/,
+    /* Sports */ 'basketball',/\bnba\b/,'football',/\bnfl\b/,'adidas','reebok','nike','draftking',
+    'fanduel','soccer','sports','golf','warriors','world cup','kevin durant','baseball','league',
 
-    /* Blog-specific */ /jalopnik/,/today's best deals/,/kotaku/,/deadspin/,/this week's top downloads/,/policy daily/,
-    /wrongometer/,/menu plan/,/gabfest/,/jezebel/,/this week's most popular posts/,/^\[?sponsor/,/dear prudence/,
-    /adequate man/,/io9/,/black flag/,/feminist cheat sheet/,/remains of the day/,/cape watch/,/what tnw is reading/,
-    /linkdump/,/^quoted$/,/editor's letter/,/open thread/,/news quiz/,/mic news/,/news alert/,/week in culture/,
-    /breakfast table/, / edition$/,/foxtrot alpha/,/pay what you want/,/the garage/,/the edge:/,/atlantic daily/,
-    /feministing reads/,/culture podcast/,/gadget ?lab podcast/,/friday favorites/,/^(\| )?two cents/,/^(\| )?lanesplit/,
-    /feministing five/,/consumerist quiz/,/nerdlove/,
+    /* Blog-specific */ 'jalopnik','today\'s best deals','kotaku','deadspin','this week\'s top downloads','policy daily',
+    'wrongometer','menu plan','gabfest','jezebel','this week\'s most popular posts',/^\[?sponsor/,'dear prudence',
+    'adequate man','io9','black flag','feminist cheat sheet','remains of the day','cape watch','what tnw is reading',
+    'linkdump',/^quoted$/,'editor\'s letter','open thread','news quiz','mic news','news alert','week in culture',
+    'breakfast table', / edition$/,'foxtrot alpha','pay what you want','the garage','the edge:','atlantic daily',
+    'feministing reads','culture podcast',/gadget ?lab podcast/,'friday favorites',/^(\| )?two cents/,/^(\| )?lanesplit/,
+    'feministing five','consumerist quiz','nerdlove',
 
     /* food */
-    /juice cleanse/,/juicer/,/\bkfc\b/,/beer/,/wine/,/heineken/,/bud[ -]light/,/coffee/,/caffeine/,/espresso/,
-    /starbucks/,/mcdonald['’]?s/,
+    'juice cleanse','juicer',/\bkfc\b/,'beer','wine','heineken',/bud[ -]light/,'coffee','caffeine','espresso',
+    'starbucks',/mcdonald['’]?s/,
 
     /* Brands, shopping */
-    /amazon deals/,/pepsi/,
+    'amazon deals','pepsi',
 
     /* Social and health issues */
-    /transgender/,/transsex/,/trans /,/trans-s/,/transpho/,/trans$/,/menstrua/,/slut[ -]sham/,/zika/,/abortion/,
+    'transgender','transsex','trans ','trans-s','transpho',/trans$/,'menstrua',/slut[ -]sham/,'zika','abortion',
     /plus[- ]size/,
 
     /* Drugs etc. */
-    /vape/,/vaping/,/\bedibles/,/pot edible/,/marijuana edible/,/weed edible/,/weed butter/,/pot butter/,/420/,/stoner/,
-    /cigar/,/e-?cig/,
+    'vape','vaping',/\bedibles/,'pot edible','marijuana edible','weed edible','weed butter','pot butter','420','stoner',
+    'cigar',/e-?cig/,
 
-    /* Misc */ /ticketmaster/,
+    /* Misc */ 'ticketmaster',
   ];
 
   // Once articles are detected, set a regular interval to review and hide newly-loaded articles that match exclusion terms
@@ -232,9 +232,13 @@ var FilterMaker = (function(){
     var result = {hasTerm: false},
       titleLower = titleString.toLowerCase(); // assume title does not have an excluded term
     for(var i = 0; i < termsToExclude.length; i++){
-      if(titleLower.search(termsToExclude[i]) !== -1){ // title has [i] excluded term in it
+      const term = termsToExclude[i];
+      const titleContainsTerm = typeof term === 'string'
+        ? titleLower.includes(term)
+        : titleLower.search(term) !== -1; // Regex search term
+      if(titleContainsTerm){ // title has [i] excluded term in it
         result.hasTerm = true;
-        result.term = termsToExclude[i];
+        result.term = term;
         break;
       }
     }
