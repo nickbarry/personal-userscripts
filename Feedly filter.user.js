@@ -1,18 +1,14 @@
 // ==UserScript==
 // @name         Feedly filter - BETA
 // @version      3.4.3
-// @update	 https://github.com/nickbarry/personal-userscripts/raw/master/Feedly%20filter.user.js
 // @description  Filter out feedly articles according to certain keywords
-// @author       Nico Barry
+// @author       Nico Greenarry
 // @match        https://feedly.com/*
 // @require 	 http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 // @run-at       document-idle
 // ==/UserScript==
 /* jshint -W097 */
 'use strict';
-
-// Latest version here:
-// https://github.com/nickbarry/personal-userscripts/blob/master/Feedly%20filter.user.js
 
 this.$ = this.jQuery = jQuery.noConflict(true);
 console.log('Feedly Filter initiated.');
@@ -24,8 +20,9 @@ var FilterMaker = (function(){
     this.currentUrl = '';
     this.counter = 0; // A counter I can use for various testing scenarios
 
+    // TODO: Fix or remove the filter bar
     this.$filterBar = $('<input type="text" id="article-filter">');
-    this.$filterBar.on('keyup',this.applyFilter.bind(this));
+    this.$filterBar.on('keyup', this.applyFilter.bind(this));
 
     this.$markFilteredAsRead = $('<button id="mark-filtered-as-read">Mark filtered articles as read</button>');
     this.$markFilteredAsRead.on('click',this.markFilteredAsRead.bind(this));
@@ -35,7 +32,6 @@ var FilterMaker = (function(){
 
   // PRIVATE VARIABLES
   var termsToExclude = [
-    // TODO: Also allow strings
     /* Temp items */
 
     /* Pop culture */ 'kardashian','kanye','downton','walking dead','whiskey tango foxtrot',/\boprah/,'kate hudson',
